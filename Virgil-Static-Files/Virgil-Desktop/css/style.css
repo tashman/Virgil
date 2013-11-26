@@ -1289,7 +1289,12 @@ background: url('../images/place-control-sprite2.png') no-repeat -1px 0;
 
 /*Basic info css */
 
-
+#basic_info_top_spacer {
+	display: block;
+	height: 50px;
+	background-color: transparent;
+	width: 100%;
+}
 
 .Basic_info-formbox-wrapper {
 	position: relative;
