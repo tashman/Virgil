@@ -1,0 +1,191 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww21840\viewh16140\viewkind0
+\deftab720
+\pard\pardeftab720\sl264\slmult1
+
+\f0\fs36 \cf0 \ul \ulc0 Devise:\ulnone \
+username: must be at least 3 characters, max 20, no rules on upper/lowercase or numbers. No duplicate account usernames in the database.\
+password: \'a0must be at least 3 characters, max 12, no rules on upper/lowercase or numbers\
+email: validate that entry has '@' and '.'.\
+\
+\ul Stripe:\ulnone \
+Subscription model\
+$2.99/month or $29.99/yr\
+Push user through stripe on creation of account. If subscription expires (payment stops). Do not delete account, but deny access (will create redirect page )\
+Do NOT use Devise email variable for this. User (re)enters email on credit card form.\
+Admin accounts do not require Stripe authentication to function.\
+\
+\ul Images:\'a0\ulnone \
+Image upload is optional on BASIC INFO page.\
+Validate .jpg, .png, .gif file extension prior to upload. (trigger alert if fail)\
+Accept up to 2MB file\
+For mobile, use Carrierwave/ImageMagick to generate thumbnail (exact size TBD)\
+\
+\ul Dashboard (Desktop)\ulnone \
+This is the main EDIT panel controlling all the features\
+The toggle switch controls ON/OFF.\'a0\
+	If ON, the mobile view will SHOW the content of that feature.\
+	If OFF, the mobile view will redirect to the 'OFF.html' version of that feature\
+	EDIT redirects to the feature page\
+\
+\ul Dashboard (Mobile)\ulnone \
+6 button control panel. Clicking the button calls the feature page.\
+Depending on Dashboard On/Off state, the features will link to their ON/Off pages.\
+\
+\ul Basic Info (Desktop): \ulnone \
+First name: required 
+\i (string)
+\i0 \
+Last name: optional 
+\i (string)
+\i0 \
+Important fact #1: optional 
+\i (string)
+\i0 \
+Important fact #2: optional 
+\i (string)
+\i0 \
+Emergency Contact Name: optional
+\i (string)
+\i0 \
+Emergency Contact Phone: Required IF Emergency Contact Name is used. 
+\i (integer)
+\i0 \
+Image: optional 
+\i (string)\
+\
+
+\i0 \ul Basic Info (Mobile): \
+\ulnone Display  user.first_name\
+		user.last_name (if applicable)\
+		user.important_fact_1 (if applicable)\
+		user.important_fact_2 (if applicable)\
+		user.emergency_contact_name as button (if applicable). Clicking launches user.emergency_contact_number as tel #\
+\
+
+\i \
+
+\i0 \ul Places (Desktop): \ulnone \
+Place Name: required
+\i  (string)\
+
+\i0 Place Address: required 
+\i (string)\
+
+\i0 Preview executes info from place address on screen.\
+Save adds it to list\
+Edit/delete buttons for each list item\
+Maximum 12 places per count. If user tries to create 13th, trigger alert (text TBD)\
+See additional model for Gmaps4Rails rules.\
+\
+\ul Places (Mobile): \
+\ulnone Display user.place_name as button 
+\b list
+\b0 . \
+Clicking button launches user.place_address as URL in Google Maps\
+\
+\
+\ul Phone (Desktop): \ulnone \
+Contact Name: required
+\i  (string)\
+
+\i0 Contact Number: required 
+\i (string)
+\i0 \
+Save adds it to list\
+Maximum 12 numbers per account. If user tries to create 13th, trigger alert (text TBD)\
+Edit/delete buttons for each list item\
+\
+\ul Phone (Mobile): \
+\ulnone Display user.contact_name as button 
+\b list
+\b0 . \
+Clicking button launches user.contact_number as tel #\
+\
+\
+\ul Medical Info (Desktop): \ulnone \
+Primary Condition: required 
+\i (string)
+\i0 \
+Secondary Condition: optional 
+\i (string)
+\i0 \
+Emergency Contact Name: optional
+\i (string)
+\i0 \
+Emergency Contact Phone: Required IF Emergency Contact Name is used. 
+\i (integer)\
+
+\i0 Doctor Name: optional 
+\i (string)
+\i0 \
+Doctor Phone: Required IF Emergency Contact Name is used. 
+\i (integer)
+\i0 \
+Hospital Name: optional 
+\i (string)
+\i0 \
+Hospital Phone: Required IF Emergency Contact Name is used. 
+\i (integer)\
+\
+
+\i0 \ul Medical Info (Mobile): 
+\i \ulnone \
+
+\i0 Display  user.primary_condition\
+		user.secondary_condition (if applicable)\
+		user.emergency_contact as button (if applicable). Clicking launches user.contact_phone as tel #\
+		user.doctor_name as button (if applicable) Clicking launches user.doctor_phone as tel #\
+		user.hospital_name as button (if applicable) Clicking launches user.hospital_phone as tel #\
+
+\i \
+\
+
+\i0 \ul Take Me Home (Desktop)
+\i \ulnone \
+
+\i0 Place address: required 
+\i (integer)\
+
+\i0 Preview executes info from place address on screen.\
+Save assigns the Google Map URL to mobile\
+One 1 place can be saved at a time
+\i \
+
+\i0 \
+\ul Take Me Home (Mobile)\
+\ulnone Pressing the button launches Google Maps from current location to saved URL location.\
+\
+\ul Video link (Desktop)\ulnone \
+Video link stores a YouTube/Vimeo URL as embedded player in mobile site\
+Video URL: required 
+\i (string)
+\i0 \
+Descriptive call to action: optional 
+\i (text) \
+
+\i0 Preview launches the video URL in the browser window\
+Save assigns the URL to the mobile site.\
+One link/call to action per account.
+\i \
+
+\i0 \
+\ul Video link (Desktop)\
+	\ulnone display video URL link as embedded player/iframe\
+	display user.call_to_action\ul \
+\ulnone \
+\
+\
+\
+\
+
+\i \
+\
+
+\i0 \
+\
+\
+\
+}
